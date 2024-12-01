@@ -19,23 +19,24 @@ The goal of the **Six-Sigma** app is to help users implement and monitor the pha
 ### Dashboard
 Here's a look at the **main dashboard** of the app, where you can view the analyzed data and process results:
 
-![Main Dashboard](./images/Dashboard.jpg)
+<img src="./images/Dashboard.jpg" width="600">
 
 ### Functionality
 
 #### Step 1: Data Input
 The app allows you to input process data for performance analysis:
 
-![Data Input](./images/input.jpg)
+<img src="./images/input.jpg" width="600">
 
 #### Step 2: Statistical Analysis
 Once the data is entered, the app generates statistical analysis to help identify areas for process improvement:
 
-![Six sigma](./images/Sixsigma.jpg)
+<img src="./images/Sixsigma.jpg" width="600">
 
-![app](./images/1.jpg)
-![app](./images/2.jpg)
-![app](./images/3.jpg)
+<img src="./images/1.jpg" width="600">
+<img src="./images/2.jpg" width="600">
+<img src="./images/3.jpg" width="600">
+
 ---
 
 ## Get Started
