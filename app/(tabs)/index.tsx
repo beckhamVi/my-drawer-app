@@ -1,74 +1,116 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+// El código completo quedaría así:
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useColorScheme } from 'react-native';
+import { Colors } from '@/constants/Colors';
 
-export default function HomeScreen() {
+// Screen imports
+import ConceptosScreen from './conceptos';
+import ProcesoScreen from './proceso';
+import AnalisisScreen from './analisis';
+import ValidacionScreen from './validacion';
+import DocumentacionScreen from './documentacion';
+import SeguimientoScreen from './seguimiento';
+import SixSigmaLevelsScreen from './sixSigmaLevels';
+
+const Drawer = createDrawerNavigator();
+
+export default function TabOneScreen() {
+  const colorScheme = useColorScheme() ?? 'light';
+  const colors = Colors[colorScheme];
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <Drawer.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: colors.tint,
+          elevation: 0,
+          shadowOpacity: 0,
+        },
+        headerTintColor: colors.background,
+        headerTitleStyle: {
+          fontWeight: '600',
+        },
+        drawerStyle: {
+          backgroundColor: colors.background,
+          paddingTop: 20,
+        },
+        drawerActiveBackgroundColor: colors.background,
+        drawerActiveTintColor: colors.tint,
+        drawerInactiveTintColor: colors.text,
+      }}
+    >
+      <Drawer.Screen 
+        name="Conceptos" 
+        component={ConceptosScreen}
+        options={{
+          title: 'Conceptos Fundamentales',
+          drawerIcon: ({ color, size }) => (
+            <MaterialIcons name="library-books" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen 
+        name="NivelesSixSigma" 
+        component={SixSigmaLevelsScreen}
+        options={{
+          title: 'Niveles Six Sigma',
+          drawerIcon: ({ color, size }) => (
+            <MaterialIcons name="trending-up" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen 
+        name="Proceso" 
+        component={ProcesoScreen}
+        options={{
+          title: 'Proceso de Identificación',
+          drawerIcon: ({ color, size }) => (
+            <MaterialIcons name="search" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen 
+        name="Analisis" 
+        component={AnalisisScreen}
+        options={{
+          title: 'Análisis Estadístico',
+          drawerIcon: ({ color, size }) => (
+            <MaterialIcons name="analytics" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen 
+        name="Validacion" 
+        component={ValidacionScreen}
+        options={{
+          title: 'Validación del Problema',
+          drawerIcon: ({ color, size }) => (
+            <MaterialIcons name="check-circle" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen 
+        name="Documentacion" 
+        component={DocumentacionScreen}
+        options={{
+          title: 'Documentación Estructurada',
+          drawerIcon: ({ color, size }) => (
+            <MaterialIcons name="description" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen 
+        name="Seguimiento" 
+        component={SeguimientoScreen}
+        options={{
+          title: 'Seguimiento y Control',
+          drawerIcon: ({ color, size }) => (
+            <MaterialIcons name="track-changes" size={size} color={color} />
+          ),
+        }}
+      />
+    </Drawer.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
