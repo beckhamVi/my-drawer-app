@@ -36,3 +36,18 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
+
+# Log files
+*.log
+
+# Optional npm cache
+.npm/
+
+# .env files for sensitive information
+.env
+
+# VS Code settings
+.vscode/
+
+# MacOS
+.DS_Store
